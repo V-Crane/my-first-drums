@@ -14,99 +14,100 @@ import {useMemo} from "react";
 
 function App() {
 
-    const drums: Array<Drum> = useMemo(() => [
-        {
-            id: 'boom',
-            button: 'Space',
-            keyCode: 'Space',
-            audioUrl: boom,
-            size: 'big',
-            top: '867px',
-            left: '470px'
-        },
-            {
-                id:'clap',
-                button:'A',
-                keyCode:'KeyA',
-                audioUrl: clap,
-                size: 'big',
-                top: '385px',
-                left: '226px'
-            },
-            {
-                id:'hihat',
-                button: 'S',
-                keyCode: 'KeyS',
-                audioUrl: hihat,
-                size: 'small',
-                top: '620px',
-                left: '155px'
-            },
-            {
-                id: 'openhat',
-                button: 'D',
-                keyCode: 'KeyD',
-                audioUrl: openhat,
-                size: 'small',
-                top: '620px',
-                left: '255px'
+  const drums: Array<Drum> = useMemo(() => [
+      {
+        id: 'boom',
+        button: 'Space',
+        keyCode: 'Space',
+        audioUrl: boom,
+        size: 'big',
+        top: '867px',
+        left: '470px'
+      },
+      {
+        id: 'clap',
+        button: 'A',
+        keyCode: 'KeyA',
+        audioUrl: clap,
+        size: 'big',
+        top: '385px',
+        left: '226px'
+      },
+      {
+        id: 'hihat',
+        button: 'S',
+        keyCode: 'KeyS',
+        audioUrl: hihat,
+        size: 'small',
+        top: '620px',
+        left: '155px'
+      },
+      {
+        id: 'openhat',
+        button: 'D',
+        keyCode: 'KeyD',
+        audioUrl: openhat,
+        size: 'small',
+        top: '620px',
+        left: '255px'
 
-            },
-            {
-                id: 'kick',
-                button: 'G',
-                keyCode: 'KeyG',
-                audioUrl: kick,
-                size: 'big',
-                top: '500px',
-                left: '340px'
-            },
-            {
-                id: 'tink',
-                button: 'H',
-                keyCode: 'KeyH',
-                audioUrl: tink,
-                size: 'big',
-                top: '490px',
-                left: '500px'
-            },
-            {
-                id: 'ride',
-                button: 'L',
-                keyCode: 'KeyL',
-                audioUrl: ride,
-                size: 'big',
-                top: '403px',
-                left: '672px'
-            },
-            {
-                id: 'snare',
-                button: 'F',
-                keyCode: 'KeyF',
-                audioUrl: snare,
-                size: "big",
-                top: '669px',
-                left: '365px'
-            },
-            {
-                id: 'tom',
-                button: 'K',
-                keyCode: 'KeyK',
-                audioUrl: tom,
-                size: "big",
-                top: '670px',
-                left: '670px'
-            }
-        ]
-    ,[])
+      },
+      {
+        id: 'kick',
+        button: 'G',
+        keyCode: 'KeyG',
+        audioUrl: kick,
+        size: 'big',
+        top: '500px',
+        left: '340px'
+      },
+      {
+        id: 'tink',
+        button: 'H',
+        keyCode: 'KeyH',
+        audioUrl: tink,
+        size: 'big',
+        top: '490px',
+        left: '500px'
+      },
+      {
+        id: 'ride',
+        button: 'L',
+        keyCode: 'KeyL',
+        audioUrl: ride,
+        size: 'big',
+        top: '403px',
+        left: '672px'
+      },
+      {
+        id: 'snare',
+        button: 'F',
+        keyCode: 'KeyF',
+        audioUrl: snare,
+        size: "big",
+        top: '669px',
+        left: '365px'
+      },
+      {
+        id: 'tom',
+        button: 'K',
+        keyCode: 'KeyK',
+        audioUrl: tom,
+        size: "big",
+        top: '670px',
+        left: '670px'
+      }
+    ]
+    , [])
 
   return (
     <main className={styles.page}>
-        <div className={styles['drums-view']}>
-            {drums.map((drum) => (
-                <Drum id={drum.id} size={drum.size} audioUrl={drum.audioUrl} button={drum.button} keyCode={drum.keyCode} top={drum.top} left={drum.left} />
-            ))}
-        </div>
+      <div className={styles['drums-view']}>
+        {drums.map((drum) => (
+          <Drum id={drum.id} size={drum.size} audioUrl={drum.audioUrl} button={drum.button}
+                keyCode={drum.keyCode} top={drum.top} left={drum.left}/>
+        ))}
+      </div>
     </main>
   )
 }
