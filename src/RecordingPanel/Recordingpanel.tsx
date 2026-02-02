@@ -1,14 +1,12 @@
 import type {FC} from "react";
-import type {Track} from "../App.tsx";
 import cx from "classnames";
 import panelStyles from "./RecordingPanel.module.scss";
+import {useDrums} from "../useDrums.tsx";
 
-type RecordingPanelProps = {
-  tracks: Array<Track>,
-  toggleRecording: () => void,
-  recordingInProgress: boolean,
-}
-export const RecordingPanel: FC<RecordingPanelProps> = ({tracks, toggleRecording, recordingInProgress}) => {
+
+export const RecordingPanel: FC = () => {
+  const {tracks, toggleRecording, recordingInProgress, playTrack} = useDrums()
+
   return (
     <menu>
       <button onClick={toggleRecording} className={cx({[panelStyles.recordingInProgress]: recordingInProgress})}>
@@ -18,7 +16,7 @@ export const RecordingPanel: FC<RecordingPanelProps> = ({tracks, toggleRecording
 
       <span>Tracks:</span>
       <ul>
-        {tracks.map(track => <li>{track.name}</li>)}
+        {tracks.map(track => <li onClick={()=> playTrack(track)}>{track.name}</li>)}
       </ul>
     </menu>
   )

@@ -1,10 +1,8 @@
-import {type FC, useCallback, useEffect, useState} from "react";
+import {type FC, useEffect} from "react";
 import drum from './Drum.module.scss'
 import cx from "classnames";
-import type {Drum as DrumType} from "../App.tsx";
-import type {RecordedDrum} from "../App.tsx";
-
-type DrumProps = DrumType & { recordDrum: (newDrum: RecordedDrum) => void, recordingInProgress: boolean };
+import {useDrums} from "../useDrums.tsx";
+import type {Drum as DrumProps} from '../useDrums.tsx'
 
 export const Drum: FC<DrumProps> = (
   {
@@ -12,46 +10,30 @@ export const Drum: FC<DrumProps> = (
     size,
     button,
     keyCode,
-    audioUrl,
     top,
     left,
-    recordDrum,
-    recordingInProgress
+    animationInProgress
   }
 ) => {
-  const [animation, setAnimation] = useState<boolean>(false)
-
-  const runInteractionAnimation = useCallback(() => {
-    setAnimation(true)
-    setTimeout(() => {
-      setAnimation(false)
-    }, 300)
-  }, []);
-
-  const playDram = useCallback(() => {
-    runInteractionAnimation()
-    if (recordingInProgress) recordDrum({id: id, timestamp: new Date()})
-    const audio = new Audio(audioUrl)
-    audio.play()
-  }, [audioUrl, id, recordDrum, recordingInProgress, runInteractionAnimation])
+  const {waitMode, playDrum} = useDrums()
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.code === keyCode) {
-        playDram()
+        playDrum(id)
       }
     }
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [keyCode, playDram])
+  }, [id, keyCode, playDrum])
 
   return (
     <div
       className={cx(drum.drum, drum[size], {
-        [drum['drum-animated-wait']]: false,
-        [drum['drum-animated-interaction']]: animation
+        [drum['drum-animated-wait']]: waitMode,
+        [drum['drum-animated-interaction']]: animationInProgress
       })}
-      onClick={playDram}
+      onClick={() => playDrum(id)}
       style={{top: top, left: left}}
     >
       {button}
