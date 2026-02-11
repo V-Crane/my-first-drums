@@ -1,0 +1,24 @@
+.recordDetails {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.trackName {
+  margin: 30px auto;
+  color: rgba(232, 92, 92, 0.9);
+  font-family: "New Rocker", system-ui;
+
+}
+
+.drumName {
+  display: flex;
+  color: rgba(255, 151, 0);
+  border: 1px solid rgba(255, 151, 0);
+    border-radius: 10px;
+  width: min-content;
+  padding: 4px;
+  margin: 6px;
+
+}

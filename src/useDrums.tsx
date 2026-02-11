@@ -27,12 +27,14 @@ type Store = {
   recordingInProgress: boolean,
   newRecord: Array<RecordedDrum> | [],
   waitMode: boolean,
+  selectedTrack: Track | null,
 
   toggleRecording: () => void,
   recordDrum: (newDrum: RecordedDrum) => void,
   runInteractionAnimationForDrum: (drumId: string) => void,
   playDrum: (drumId: string) => void,
   playTrack: (track: Track, drumIndex?: number) => void,
+  selectTrack: (track: Track) => void
 }
 
 export type RecordedDrum = {
@@ -142,6 +144,7 @@ export const useDrums = create<Store>((set, get) => ({
   recordingInProgress: false,
   newRecord: [],
   waitMode: false,
+  selectedTrack: null,
 
   toggleRecording: () => {
     const {recordingInProgress, newRecord} = get()
@@ -199,6 +202,8 @@ export const useDrums = create<Store>((set, get) => ({
 
       playDrum(current.id);
     }
+  },
+  selectTrack: (track) => {
+    set({selectedTrack: track})
   }
-
 }))
