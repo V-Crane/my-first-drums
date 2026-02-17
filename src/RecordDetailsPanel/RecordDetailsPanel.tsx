@@ -34,6 +34,7 @@ export const RecordDetailsPanel: FC = () => {
             <Fragment key={index}>
               <input
                 type="number"
+                name="timout-input"
                 onChange={({target: {value}}) => editDelay(index, +value)}
                 value={recordedDrum.timestamp - selectedTrack.record[index - 1].timestamp}
                 className={recordingStyles.timeout}>
